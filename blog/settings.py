@@ -20,7 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-i24&$k_pliagsvvd3#$sdgxo7co84dd!b17!e=6vdp*2-wq!rj'
+SECRET_KEY = None
+with open('/home/lr1n/PROJECTS/django_projects/dart_blog/blog_project/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'blog_app.apps.BlogAppConfig',
 ]
 
 MIDDLEWARE = [
