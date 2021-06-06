@@ -4,3 +4,5 @@ db.sqlite3
 
 # our SECRET KEY
 secret_key.txt
+
+.vscode
