@@ -1,9 +1,10 @@
 from django.urls import path
 
-from .views import index, get_category
+from blog_app.views import Home, get_category, get_post
 
 
 urlpatterns = [
-    path('', index, name='home'),
+    path('', Home.as_view(), name='home'),
     path('category/<str:slug>', get_category, name='category'),
+    path('post/<str:slug>', get_post, name='post'),
 ]
