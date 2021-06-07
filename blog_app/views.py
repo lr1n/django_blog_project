@@ -21,11 +21,8 @@ def index(request):
 
 
 def get_category(request, slug):
-<<<<<<< HEAD
     return render(request, 'blog_app/category.html')
 
 
 def get_post(request, slug):
-=======
->>>>>>> 859a0113fef3090768f4b2870296a812dc199f76
     return render(request, 'blog_app/category.html')
