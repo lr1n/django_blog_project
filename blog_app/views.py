@@ -21,10 +21,10 @@ class PostsByCategory(ListView):
     template_name = 'blog_app/index.html'
     context_object_name = 'posts'
     paginate_by = 4
-    # when we allow to non-existent object we will get '404' error
+    # when we refer to non-existent object we will get '404' error
     allow_empty = False
 
-    def get_queryset(self, ):
+    def get_queryset(self):
         return Post.objects.filter(category__slug=self.kwargs['slug'])
 
     def get_context_data(self, **kwargs):
@@ -34,7 +34,20 @@ class PostsByCategory(ListView):
 
 
 class PostsByTag(ListView):
-    pass
+    template_name = 'blog_app/index.html'
+    context_object_name = 'posts'
+    paginate_by = 4
+    allow_empty = False
+
+    def get_queryset(self):
+        return Post.objects.filter(tags__slug=self.kwargs['slug'])
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Posts by tag ' + str(Tag.objects.get(
+            slug=self.kwargs['slug']
+        ))
+        return context
 
 
 class GetPost(DetailView):
@@ -46,6 +59,7 @@ class GetPost(DetailView):
         context = super().get_context_data(**kwargs)
         self.object.views = F('views') + 1
         self.object.save()
+        # allows us see increasing views after updating page
         self.object.refresh_from_db()
         return context
 

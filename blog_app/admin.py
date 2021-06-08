@@ -35,7 +35,7 @@ class PostAdmin(admin.ModelAdmin):
     )
     list_display_links = ('id', 'title')
     search_fields = ('title',)
-    list_filter = ('category',)
+    list_filter = ('category', 'tags')
     readonly_fields = ('views', 'created_at', 'get_photo')
     # in this order fields will be shown us when we are in editing mode
     fields = (
